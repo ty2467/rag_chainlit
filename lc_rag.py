@@ -56,6 +56,15 @@ index = VectorstoreIndexCreator(
 
 
 '''
+So for the next steps, what we are to do is this:
+1. Setup a persistent vector database
+2. Do efficient rag on it.
+Really, all these can be achieved through openai file-search
+
+'''
+
+
+'''
     Setting up tool that does rag. Demonstrates the ability to retreive data from corpus.
 '''
 @tool

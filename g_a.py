@@ -23,6 +23,12 @@ _ = load_dotenv(dotenv_path) # read local .env file
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 '''
+    top n search result 'macro' setup
+'''
+TOP_N_THREASHHOLD = 4
+
+
+'''
     Google custom search setup
 '''
 API_KEY = 'AIzaSyDyGt9uhHkqyeSjFs3mvqzP8fAEQ1MZpY4'
@@ -44,6 +50,20 @@ def google_search(query, api_key, cse_id, **kwargs):
     return res
 
 '''
+    function that obtains the top n 
+'''
+def top_n_search_results(query):
+    temp_res = google_search(query, API_KEY, CSE_ID)
+    keys = temp_res.keys()
+    keys_included = list(keys)[:-1]
+    no_items = {key: temp_res[key] for key in keys_included} 
+    items = temp_res['items']
+    top_n_items  = {"items": items[0:TOP_N_THREASHHOLD]}
+    top_n_result = no_items | top_n_items
+    return top_n_result
+
+
+'''
     Google search tool
 '''
 @tool
@@ -56,6 +76,5 @@ def search(query: str):
     The input should always be a query string \
     and this function will return the query result from\
     google's api."""
-    results = google_search(query, API_KEY, CSE_ID)
+    results = top_n_search_results(query)
     return results
-
