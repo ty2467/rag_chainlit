@@ -9,7 +9,7 @@ from dotenv import load_dotenv# find_dotenv
     imports for agent using tools
 '''
 import g_a
-import lc_rag
+import rag
 import llm_tool
 from langchain.agents import initialize_agent
 from langchain.agents import AgentType
@@ -36,14 +36,14 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 '''
     Defining Model
 '''
-llm_model = "gpt-3.5-turbo"
+llm_model = "gpt-4o"
 
 
 
 @cl.on_chat_start
 async def on_chat_start():
     model = ChatOpenAI(temperature=0, model=llm_model, openai_api_key=OPENAI_API_KEY, streaming=True)
-    tools = [g_a.search, llm_tool.chat, lc_rag.rag]
+    tools = [g_a.search, llm_tool.chat, rag.rag_with_openai_vec_db]
     agent= initialize_agent(
         tools,
         model, 

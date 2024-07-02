@@ -16,23 +16,24 @@ import os
 from dotenv import load_dotenv
 
 '''
-    OPENAI_API_KEY setup 
+    Finding .env
 '''
 dotenv_path = os.path.join(os.path.expanduser('~'), '.env')
 _ = load_dotenv(dotenv_path) # read local .env file
+
+'''
+Setup:
+    OPENAI_API_KEY, Google Custom Search Api Key, CSE_ID (google search id)
+'''
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+API_KEY = os.getenv('GOOGLE_CUSTOM_SEARCH_API_KEY')
+CSE_ID = os.getenv('CSE_ID')
 
 '''
     top n search result 'macro' setup
 '''
 TOP_N_THREASHHOLD = 4
 
-
-'''
-    Google custom search setup
-'''
-API_KEY = 'AIzaSyDyGt9uhHkqyeSjFs3mvqzP8fAEQ1MZpY4'
-CSE_ID = 'b626bf8b5fd13438d'
 
 '''
     LLM model set up

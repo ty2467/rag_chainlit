@@ -9,3 +9,10 @@ g_a.py:
 
 llm_tool.py:
 设置一个openai的client，并保存context来做到持续性的chatbot功能
+
+
+
+rag.py:
+调用了openai 的file search agent 用的 api的vector db(client.beta.vector_store module).
+initialize_db.py:
+vector db 的创建在initialize_db中完成，并具有persistence。rag.py调用了initiailze_db的vector db
